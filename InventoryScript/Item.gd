@@ -3,7 +3,7 @@ class_name itemTexture
 
 
 @export var get_inv:NodePath
-@onready var GetedInv:Panel = get_node(get_inv)
+var GetedInv:Panel 
 var itemInSLot=true
 var quantidade=0
 var id=-1
@@ -20,7 +20,9 @@ func _ready():
 
 func _get_drag_data(position):
 	set_drag_preview(duplicate())
-	return [self,GetedInv]
+	if !itemInSLot:
+		return [self,null]
+	return [self,get_node(get_inv)]
 
 
 

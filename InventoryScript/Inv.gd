@@ -42,9 +42,22 @@ func VerifyItens():
 		elif slots[i].texture.id>-1:
 			Inv[slots[i].texture.id]=slots[i].texture.quantidade
 	$Text.text=str(Inv)
+	get_parent().InvsOpened[$Title.text][1]=Inv
 
 
 
 
 func _on_close_pressed():
 	visible=false
+
+
+func DrawLoaded()->void:
+	var QuantSlots=slots.size()-1
+	for i in Inv:
+		var item = slots[QuantSlots].get_node("item")
+		item.texture=Dados.items[i]
+		item.id = i
+		item.quantidade = Inv[i]
+		slots[QuantSlots].change(item.quantidade)
+		QuantSlots-=1
+	

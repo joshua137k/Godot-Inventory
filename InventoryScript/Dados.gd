@@ -1,5 +1,8 @@
 extends Node
 
+
+var filePath = "res://SaveData.joshua"
+
 #Script aonde guardo os ids
 enum item {Preto, Vermelho, Verde}
 var items=[]
