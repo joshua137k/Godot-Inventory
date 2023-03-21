@@ -1,10 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://co1jg7sxdk4ij"]
+[gd_scene load_steps=3 format=3 uid="uid://co1jg7sxdk4ij"]
 
 [ext_resource type="Script" path="res://InventoryScript/ui.gd" id="1_hcwul"]
-[ext_resource type="Script" path="res://InventoryScript/Inv.gd" id="2_dgvki"]
-[ext_resource type="Script" path="res://InventoryScript/PanelSlot.gd" id="3_3lcwt"]
-[ext_resource type="Script" path="res://InventoryScript/Item.gd" id="4_msc6m"]
-[ext_resource type="Script" path="res://InventoryScript/InvDraw.gd" id="5_p64wf"]
 [ext_resource type="Script" path="res://LIXO.gd" id="6_g5l3c"]
 
 [node name="Ui" type="Panel"]
@@ -15,32 +11,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_hcwul")
 
-[node name="Player" type="Button" parent="."]
-layout_mode = 0
-offset_left = 379.0
-offset_top = 128.0
-offset_right = 459.0
-offset_bottom = 159.0
-text = "PlayerInv"
-
-[node name="Chest" type="Button" parent="."]
-layout_mode = 0
-offset_left = 375.0
-offset_top = 40.0
-offset_right = 455.0
-offset_bottom = 71.0
-text = "Chest1
-"
-
-[node name="NewItem" type="Button" parent="."]
-layout_mode = 0
-offset_left = 379.0
-offset_top = 218.0
-offset_right = 459.0
-offset_bottom = 249.0
-text = "ADD_RADOM_ITEM
-"
-
 [node name="LIXO" type="Button" parent="."]
 layout_mode = 0
 offset_left = 974.0
@@ -50,143 +20,38 @@ offset_bottom = 616.0
 text = "LIXO"
 script = ExtResource("6_g5l3c")
 
-[node name="Inv" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 66.0
-offset_top = 326.0
-offset_right = 396.0
-offset_bottom = 663.0
-script = ExtResource("2_dgvki")
-
-[node name="InvDraw" type="GridContainer" parent="Inv"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 7.0
-offset_right = 322.0
-offset_bottom = 327.0
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-columns = 4
-
-[node name="Panel" type="Panel" parent="Inv/InvDraw"]
-self_modulate = Color(0.568627, 0.0509804, 0.278431, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("3_3lcwt")
-get_inv = NodePath("../..")
-
-[node name="item" type="TextureRect" parent="Inv/InvDraw/Panel"]
-texture_filter = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("4_msc6m")
-get_inv = NodePath("..")
 
-[node name="Label" type="Label" parent="Inv/InvDraw/Panel"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -26.0
-offset_right = 40.0
-grow_vertical = 0
-
-[node name="Grab" type="Panel" parent="Inv"]
+[node name="Player" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-offset_left = 1.0
-offset_top = -28.0
-offset_right = 321.0
-offset_bottom = 5.0
-mouse_filter = 1
-script = ExtResource("5_p64wf")
+text = "PlayerInv"
 
-[node name="Close" type="Button" parent="Inv"]
-layout_mode = 0
-offset_left = 288.0
-offset_top = -28.0
-offset_right = 321.0
-offset_bottom = 3.0
-text = "X"
-
-[node name="Text" type="Label" parent="Inv"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = -68.0
-offset_right = 137.0
-offset_bottom = -30.0
-
-[node name="Inv2" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 66.0
-offset_top = 326.0
-offset_right = 396.0
-offset_bottom = 663.0
-script = ExtResource("2_dgvki")
-
-[node name="InvDraw" type="GridContainer" parent="Inv2"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 7.0
-offset_right = 322.0
-offset_bottom = 327.0
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-columns = 4
-
-[node name="Panel" type="Panel" parent="Inv2/InvDraw"]
-self_modulate = Color(0.568627, 0.0509804, 0.278431, 1)
+[node name="NewItem" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+text = "ADD_RADOM_ITEM
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("3_3lcwt")
-get_inv = NodePath("../..")
+metadata/_edit_group_ = true
 
-[node name="item" type="TextureRect" parent="Inv2/InvDraw/Panel"]
-texture_filter = 1
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_msc6m")
-get_inv = NodePath("..")
-
-[node name="Label" type="Label" parent="Inv2/InvDraw/Panel"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -26.0
-offset_right = 40.0
-grow_vertical = 0
-
-[node name="Grab" type="Panel" parent="Inv2"]
+[node name="Chest" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_direction = 1
 layout_mode = 2
-offset_left = 1.0
-offset_top = -28.0
-offset_right = 321.0
-offset_bottom = 5.0
-mouse_filter = 1
-script = ExtResource("5_p64wf")
+text = "Chest
+"
 
-[node name="Close" type="Button" parent="Inv2"]
-layout_mode = 0
-offset_left = 288.0
-offset_top = -28.0
-offset_right = 321.0
-offset_bottom = 3.0
-text = "X"
+[node name="OpenChest" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "OpenChest
+"
 
-[node name="Text" type="Label" parent="Inv2"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = -68.0
-offset_right = 137.0
-offset_bottom = -30.0
-
-[connection signal="pressed" from="Player" to="." method="_on_player_pressed"]
-[connection signal="pressed" from="NewItem" to="." method="_on_chest_2_pressed"]
-[connection signal="pressed" from="Inv/Close" to="Inv" method="_on_close_pressed"]
-[connection signal="pressed" from="Inv2/Close" to="Inv2" method="_on_close_pressed"]
+[connection signal="pressed" from="VBoxContainer/Player" to="." method="_on_player_pressed"]
+[connection signal="pressed" from="VBoxContainer/NewItem" to="." method="_on_new_item_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Chest" to="." method="_on_chest_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/OpenChest" to="." method="_on_open_chest_pressed"]

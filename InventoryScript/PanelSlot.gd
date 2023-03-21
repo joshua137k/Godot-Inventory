@@ -11,8 +11,10 @@ extends Panel
 func _can_drop_data(position, data):
 	#(texture.id==-1 or texture.id==data.id) Condição nesseraria para impedir que coloquemos 
 	#um item diferente de outro no mesmo slot
-	var can_drop:bool = data[0] is itemTexture and (texture.id==-1 or texture.id==data[0].id)
-	return can_drop
+	if data is Array:
+		var can_drop:bool = data[0] is itemTexture and (texture.id==-1 or texture.id==data[0].id)
+		return can_drop
+	return false
 
 
 func _drop_data(position, data):

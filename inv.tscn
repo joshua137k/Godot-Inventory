@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl5phv1vvorrh"]
+
+[ext_resource type="Script" path="res://InventoryScript/Inv.gd" id="1_oo4a2"]
+[ext_resource type="Script" path="res://InventoryScript/PanelSlot.gd" id="2_q2edy"]
+[ext_resource type="Script" path="res://InventoryScript/Item.gd" id="3_8358m"]
+[ext_resource type="Script" path="res://InventoryScript/InvDraw.gd" id="4_fd668"]
+
+[node name="Inv" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 358.0
+offset_top = 178.0
+offset_right = 688.0
+offset_bottom = 515.0
+script = ExtResource("1_oo4a2")
+metadata/_edit_group_ = true
+
+[node name="InvDraw" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 322.0
+offset_bottom = 327.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+columns = 4
+
+[node name="Panel" type="Panel" parent="InvDraw"]
+self_modulate = Color(0.568627, 0.0509804, 0.278431, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_q2edy")
+get_inv = NodePath("../..")
+
+[node name="item" type="TextureRect" parent="InvDraw/Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_8358m")
+get_inv = NodePath("..")
+
+[node name="Label" type="Label" parent="InvDraw/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Grab" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 1.0
+offset_top = -28.0
+offset_right = 321.0
+offset_bottom = 5.0
+mouse_filter = 1
+script = ExtResource("4_fd668")
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = -28.0
+offset_right = 321.0
+offset_bottom = 3.0
+text = "X"
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -68.0
+offset_right = 137.0
+offset_bottom = -30.0
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 203.0
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

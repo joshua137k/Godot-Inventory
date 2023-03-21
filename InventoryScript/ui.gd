@@ -4,10 +4,15 @@ extends Panel
 #Basicamente a tela aonde os nosso inventario podem se movimentar
 #Se for inventario pode aqui ser dropado
 
-@onready var InvsOpened={"Player":get_node("Inv")}
+@onready var InvsOpened={}
+@onready var InvSceane=preload("res://inv.tscn")
 
 
-
+func _ready():
+	var NewInv = InvSceane.instantiate()
+	NewInv.get_node("Title").text="Player"
+	add_child(NewInv)
+	InvsOpened["Player"]=NewInv
 
 
 func _can_drop_data(position, data):
@@ -21,8 +26,26 @@ func _drop_data(position, data):
 	return self
 
 
+
+
+
+func _on_player_pressed():
+	InvsOpened["Player"].visible=true
+
+
+func _on_chest_pressed():
+	var NewInv = InvSceane.instantiate()
+	NewInv.get_node("Title").text="Chest"
+	add_child(NewInv)
+	InvsOpened["Chest"]=NewInv
+	$VBoxContainer/HBoxContainer/Chest.disabled=true
+
+
+func _on_open_chest_pressed():
+	InvsOpened["Chest"].visible=true
+
 #New itens create
-func _on_chest_2_pressed():
+func _on_new_item_pressed():
 	var new = itemTexture.new()
 	new.itemInSLot=false
 	new.quantidade=1
@@ -31,7 +54,3 @@ func _on_chest_2_pressed():
 	new.texture=Dados.items[rand]
 	new.id=rand
 	add_child(new)
-
-
-func _on_player_pressed():
-	InvsOpened["Player"].visible=true
