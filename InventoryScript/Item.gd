@@ -2,7 +2,8 @@ extends TextureRect
 class_name itemTexture
 
 
-
+@export var get_inv:NodePath
+@onready var GetedInv:Panel = get_node(get_inv)
 var itemInSLot=true
 var quantidade=0
 var id=-1
@@ -18,12 +19,10 @@ func _ready():
 
 
 func _get_drag_data(position):
-	set_drag_preview(_get_preview_control())
-	return self
+	set_drag_preview(duplicate())
+	return [self,GetedInv]
 
-func _get_preview_control()->Control:
-	var preview = duplicate()
-	return preview
+
 
 
 

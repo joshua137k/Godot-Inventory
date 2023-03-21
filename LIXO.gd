@@ -8,14 +8,9 @@ func _can_drop_data(position, data):
 
 
 func _drop_data(position, data):
-	
 	if !data.itemInSLot:
 		data.queue_free()
 	else:
-		data.texture=null
-		data.id=-1
-		data.quantidade=0
-		data.get_parent().get_node("Label").text=""
-		data.get_parent().Inv.VerifyItens()
+		Dados.ClenSlotData(data)
 
 	return self

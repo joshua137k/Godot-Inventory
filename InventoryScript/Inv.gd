@@ -37,14 +37,11 @@ func VerifyItens():
 	#Cada verificação limpamos o Inv, e add o novo inv....
 	Inv={}
 	for i in slots:
-		if slots[i].texture.texture==null:
-			slots[i].texture.quantidade=0
-			slots[i].change(0)
-		else:
-			if slots[i].texture.id in Inv:
-				Inv[slots[i].texture.id]+=slots[i].texture.quantidade
-			else:
-				Inv[slots[i].texture.id]=slots[i].texture.quantidade
+		if slots[i].texture.id in Inv:
+			Inv[slots[i].texture.id]+=slots[i].texture.quantidade
+		elif slots[i].texture.id>-1:
+			Inv[slots[i].texture.id]=slots[i].texture.quantidade
+	$Text.text=str(Inv)
 
 
 

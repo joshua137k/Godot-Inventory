@@ -7,8 +7,7 @@ extends Panel
 @onready var InvsOpened={"Player":get_node("Inv")}
 
 
-func _process(delta):
-	$Label.text=str(InvsOpened["Player"].Inv)
+
 
 
 func _can_drop_data(position, data):
